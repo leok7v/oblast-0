@@ -20,12 +20,10 @@ jobs:
       - name: Install Gnuplot
         run: sudo apt-get install gnuplot -y --fix-missing
 
-#       alt: ?set datafile separator "5#5char6#6" means "," instead of tab/whitespace?
       - name: Generate Graph for Intel GPU
         run: |
             gnuplot -e "set term svg; \
                       set datafile separator ','; \
-                      set key fixed left top vertical Right noreverse enhanced autotitle box lt black linewidth 1.000 dashtype solid \
                       set key autotitle columnhead; \
                       set title 'Intel GPU profile'; \
                       set xlabel 'Nx1000'; \
@@ -64,3 +62,5 @@ jobs:
 # https://stackoverflow.com/questions/51687096/gnuplot-autotitle-coloumnhead-key-and-datafile-with
 # https://raymii.org/s/tutorials/GNUplot_tips_for_nice_looking_charts_from_a_CSV_file.html
 # https://stackoverflow.com/questions/12818797/how-to-plot-several-datasets-with-titles-from-one-file-in-gnuplot
+#
+# set key fixed left top vertical Right noreverse enhanced autotitle box lt black linewidth 1.000 dashtype solid
