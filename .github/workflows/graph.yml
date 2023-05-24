@@ -22,6 +22,7 @@ jobs:
       - name: Plot svg from csv for Intel GPU.
         run: |
             echo on;
+            ls -l profile/intel.svg;
             rm profile/intel.svg;
             gnuplot -e "set term svg; \
                       set datafile separator ','; \
@@ -32,11 +33,12 @@ jobs:
                       set output 'profile/intel.svg'; \
                       plot 'profile/intel.csv' u 1:2 w lines, '' u 1:3 w lines";
             pwd;
-            ls -l rm profile/intel.svg
+            ls -l profile/intel.svg
 
       - name: Plot svg from csv for NVIDIA GPU.
         run: |
             echo on;
+            ls -l profile/nvidia.svg;
             rm profile/nvidia.svg;
             gnuplot -e "set term svg; \
                       set datafile separator ','; \
@@ -47,7 +49,7 @@ jobs:
                       set output 'profile/nvidia.svg'; \
                       plot 'profile/nvidia.csv' u 1:2 w lines title 'AVX', '' u 1:3 w lines title 'GPU'"
             pwd;
-            ls -l rm profile/nvidia.svg
+            ls -l profile/nvidia.svg
 
       - name: Upload Intel Graph Artifact.
         uses: actions/upload-artifact@v3
