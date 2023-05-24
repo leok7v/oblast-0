@@ -15,7 +15,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: build release
-        run: msbuild msvc22\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Release
+        run: msbuild msvc2022\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Release
 
       - name: upload sts.exe
         uses: actions/upload-release-asset@v1
