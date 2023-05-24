@@ -1,7 +1,9 @@
 name: release
+
 on:
   release:
     types: [published]
+
 jobs:
   my-job:
     runs-on: windows-latest
