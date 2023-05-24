@@ -55,6 +55,8 @@ jobs:
 
       - name: Update Graphs inside repository.
         run: |
+          git config --global user.name  "gnuplot"
+          git config --global user.email "gnuplot@gnuplot.gnuplot"
           git add profile/intel.svg
           git add profile/nvidia.svg
           git commit -m "updated intel.svg and nvidia.svg"
