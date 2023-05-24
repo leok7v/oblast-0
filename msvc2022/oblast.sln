@@ -21,6 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\release.yml = ..\.github\workflows\release.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "profile", "profile", "{2D64C5C8-AB27-49BE-9C6B-AAF9DECFCE5F}"
+	ProjectSection(SolutionItems) = preProject
+		..\profile\intel.csv = ..\profile\intel.csv
+		..\profile\nvidia.csv = ..\profile\nvidia.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +51,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7CAD6E7B-F323-4628-AE4C-E52DB9741F0D} = {FA83895A-1CED-4FC5-9F11-6AFA109CFC7D}
+		{2D64C5C8-AB27-49BE-9C6B-AAF9DECFCE5F} = {FA83895A-1CED-4FC5-9F11-6AFA109CFC7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4903FF9C-ADBE-4753-BB20-C4EEE5D83493}
