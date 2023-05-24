@@ -13,6 +13,9 @@ jobs:
       - name: Checkout.
         uses: actions/checkout@v3
 
+      - name: Update gnuplot prerequisites.
+        run: sudo apt-get update -y
+
       - name: Install gnuplot.
         run: sudo apt-get install gnuplot -y --fix-missing
 
