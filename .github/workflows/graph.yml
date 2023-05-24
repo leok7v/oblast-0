@@ -24,8 +24,12 @@ jobs:
             gnuplot -e "set term svg; \
                       set output 'intel.svg'; \
                       set title 'Intel GPU profile'; \
+                      set xlabel 'Nx1000'; \
+                      set ylabel 'Time'; \                                            
                       set key autotitle columnheader; \
-                      plot 'profile/intel.csv' using 1:3 with lines"
+                      plot 'profile/intel.csv' \
+                      using 1:2 with lines title 'AVX' \
+                      using 1:2 with lines title 'GPU'"
 
       - name: Generate Graph for NVIDIA GPU
         run: |
