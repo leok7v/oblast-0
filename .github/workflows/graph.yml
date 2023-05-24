@@ -3,6 +3,7 @@ name: Generate Profiling Graphs
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   generate-graph:
