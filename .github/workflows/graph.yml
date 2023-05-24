@@ -1,4 +1,7 @@
-name: Generate Performance Graphs
+name: Generate Profiling Graphs
+
+# see
+# https://gnuplot.sourceforge.net/demo/layout.html
 
 on:
   push:
@@ -26,21 +29,23 @@ jobs:
                       set title 'Intel GPU profile'; \
                       set xlabel 'Nx1000'; \
                       set ylabel 'Time'; \
-                      set key autotitle columnheader; \
+                      set key autotitle column; \
                       plot 'profile/intel.csv' \
-                      using 1:2 with lines title 'AVX' \
-                      using 1:2 with lines title 'GPU'"
+                      using 1:2:3 with lines"
 
       - name: Generate Graph for NVIDIA GPU
         run: |
             gnuplot -e "set term svg; \
                       set output 'nvidia.svg'; \
-                      set title 'NVIDIA GPU Profile'; \
-                      set key autotitle columnheader; \
-                      plot 'profile/nvidia.csv' using 1:3 with lines"
+                      set title 'Intel GPU profile'; \
+                      set xlabel 'Nx1000'; \
+                      set ylabel 'Time'; \
+                      set key autotitle column; \
+                      plot 'profile/nvidia.csv' \
+                      using 1:2:3 with lines"
 
       - name: Store Intel Graph in Repository
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: intel.svg
           path: intel.svg
