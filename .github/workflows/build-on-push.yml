@@ -15,9 +15,9 @@ jobs:
       - name: setup msbuild
         uses: microsoft/setup-msbuild@v1.1
       - name: build debug
-        run:  msbuild msvc22\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Debug
+        run:  msbuild msvc2022\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Debug
       - name: build release
-        run:  msbuild msvc22\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Release
+        run:  msbuild msvc2022\oblast.sln -t:rebuild -verbosity:quiet -property:Configuration=Release
       - name: upload release artifact
         uses: actions/upload-artifact@v3
         with:
