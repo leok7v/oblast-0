@@ -21,11 +21,11 @@ jobs:
 
       - name: Generate Graph for Intel GPU
         run: |
-          gnuplot -e "set term svg; set output 'intel.svg'; set title 'Intel Profile'; plot 'profile/intel.scv' using 1:2 with lines"
+          gnuplot -e "set term svg; set output 'intel.svg'; set title 'Intel Profile'; plot 'profile/intel.csv' using 1:2 with lines"
 
       - name: Generate Graph for NVIDIA GPU
         run: |
-          gnuplot -e "set term svg; set output 'nvidia.svg'; set title 'NVIDIA Profile'; plot 'profile/nvidia.scv' using 1:2 with lines"
+          gnuplot -e "set term svg; set output 'nvidia.svg'; set title 'NVIDIA Profile'; plot 'profile/nvidia.csv' using 1:2 with lines"
 
       - name: Store Intel Graph in Repository
         uses: actions/upload-artifact@v2
