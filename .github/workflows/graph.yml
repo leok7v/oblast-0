@@ -15,17 +15,25 @@ jobs:
 
       - name: Install Gnuplot
         run: sudo apt-get update -y
-        
+
       - name: Install Gnuplot
         run: sudo apt-get install gnuplot -y --fix-missing
 
       - name: Generate Graph for Intel GPU
         run: |
-          gnuplot -e "set term svg; set output 'intel.svg'; set title 'Intel Profile'; plot 'profile/intel.csv' using 1:2 with lines"
+            gnuplot -e "set term svg; \
+                      set output 'intel.svg'; \
+                      set title 'Intel GPU profile'; \
+                      set key autotitle columnheader; \
+                      plot 'profile/intel.csv' using 1:3 with lines"
 
       - name: Generate Graph for NVIDIA GPU
         run: |
-          gnuplot -e "set term svg; set output 'nvidia.svg'; set title 'NVIDIA Profile'; plot 'profile/nvidia.csv' using 1:2 with lines"
+            gnuplot -e "set term svg; \
+                      set output 'nvidia.svg'; \
+                      set title 'NVIDIA GPU Profile'; \
+                      set key autotitle columnheader; \
+                      plot 'profile/nvidia.csv' using 1:3 with lines"
 
       - name: Store Intel Graph in Repository
         uses: actions/upload-artifact@v2

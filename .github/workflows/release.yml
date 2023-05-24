@@ -26,7 +26,7 @@ jobs:
           asset_content_type: application/exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: upload oblast.exe
         uses: actions/upload-release-asset@v1
         with:
