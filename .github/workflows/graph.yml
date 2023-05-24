@@ -1,4 +1,4 @@
-name: graphs
+name: graph
 
 on:
   release:
@@ -21,6 +21,8 @@ jobs:
 
       - name: Plot svg from csv for Intel GPU.
         run: |
+            echo on;
+            rm profile/intel.svg;
             gnuplot -e "set term svg; \
                       set datafile separator ','; \
                       set key autotitle columnhead; \
@@ -28,10 +30,14 @@ jobs:
                       set xlabel 'Nx1000'; \
                       set ylabel 'Time(ms)'; \
                       set output 'profile/intel.svg'; \
-                      plot 'profile/nvidia.csv' u 1:2 w lines, '' u 1:3 w lines"
+                      plot 'profile/intel.csv' u 1:2 w lines, '' u 1:3 w lines";
+            pwd;
+            ls -l rm profile/intel.svg
 
       - name: Plot svg from csv for NVIDIA GPU.
         run: |
+            echo on;
+            rm profile/nvidia.svg;
             gnuplot -e "set term svg; \
                       set datafile separator ','; \
                       set key autotitle column; \
@@ -40,6 +46,8 @@ jobs:
                       set ylabel 'Time(ms)'; \
                       set output 'profile/nvidia.svg'; \
                       plot 'profile/nvidia.csv' u 1:2 w lines title 'AVX', '' u 1:3 w lines title 'GPU'"
+            pwd;
+            ls -l rm profile/nvidia.svg
 
       - name: Upload Intel Graph Artifact.
         uses: actions/upload-artifact@v3
