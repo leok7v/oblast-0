@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Gnuplot
         run: sudo apt-get update -y
@@ -25,7 +25,7 @@ jobs:
                       set output 'intel.svg'; \
                       set title 'Intel GPU profile'; \
                       set xlabel 'Nx1000'; \
-                      set ylabel 'Time'; \                                            
+                      set ylabel 'Time'; \
                       set key autotitle columnheader; \
                       plot 'profile/intel.csv' \
                       using 1:2 with lines title 'AVX' \
@@ -46,7 +46,7 @@ jobs:
           path: intel.svg
 
       - name: Store Graph in Repository
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: nvidia.svg
           path: nvidia.svg
