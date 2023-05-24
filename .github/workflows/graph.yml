@@ -59,10 +59,12 @@ jobs:
           git config --global user.email "gnuplot@gnuplot.gnuplot"
           git add profile/intel.svg
           git add profile/nvidia.svg
-          git commit -m "updated intel.svg and nvidia.svg"
-          git push
+          git status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#         git commit -m "updated intel.svg and nvidia.svg"
+#         git push
 
 
 # refrences:
