@@ -1,0 +1,37 @@
+name: Generate Performance Graphs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-graph:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Gnuplot
+        run: sudo apt-get install gnuplot -y
+
+      - name: Generate Graph for Intel GPU
+        run: |
+          gnuplot -e "set term svg; set output 'intel.svg'; set title 'Intel Profile'; plot 'profile/intel.scv' using 1:2 with lines"
+
+      - name: Generate Graph for NVIDIA GPU
+        run: |
+          gnuplot -e "set term svg; set output 'nvidia.svg'; set title 'NVIDIA Profile'; plot 'profile/nvidia.scv' using 1:2 with lines"
+
+      - name: Store Intel Graph in Repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: intel.svg
+          path: intel.svg
+
+      - name: Store Graph in Repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: nvidia.svg
+          path: nvidia.svg
