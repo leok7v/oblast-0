@@ -55,11 +55,14 @@ jobs:
 
       - name: Update Graphs inside repository.
         run: |
+          echo on
           git config --global user.name  "gnuplot"
           git config --global user.email "gnuplot@gnuplot.gnuplot"
           git add profile/intel.svg
           git add profile/nvidia.svg
           git status
+          find .
+          pwd
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
