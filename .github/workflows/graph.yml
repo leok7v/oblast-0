@@ -4,6 +4,8 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+permissions:
+  contents: write
 
 jobs:
   generate-graph:
@@ -12,12 +14,14 @@ jobs:
     steps:
       - name: Checkout.
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Update gnuplot prerequisites.
-        run: sudo apt-get update -y
+        run: sudo apt-get update -y --quiet=1
 
       - name: Install gnuplot.
-        run: sudo apt-get install gnuplot -y --fix-missing
+        run: sudo apt-get install gnuplot -y --fix-missing --quiet=1
 
       - name: Plot svg from csv for Intel GPU.
         run: |
@@ -67,25 +71,19 @@ jobs:
         run: |
             echo $(date +"%Y-%m-%d-T%H.%M.%SZ") >> updated.txt
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update svg graphs inside repository.
+        run: |
+          echo on
+          git config --global user.name  "gnuplot"
+          git config --global user.email "gnuplot@gnuplot.gnuplot"
+          git add .
+          git commit -am "updated on - $(date)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
-#     - name: Update svg graphs inside repository.
-#       run: |
-#         echo on
-#         git config --global user.name  "gnuplot"
-#         git config --global user.email "gnuplot@gnuplot.gnuplot"
-#         git add profile/intel.svg
-#         git add profile/nvidia.svg
-#         set +e  # Grep succeeds with nonzero exit codes to show results.
-#         git status | grep modified
-#         if [ $? -eq 0 ]; then git commit -am "updated on - $(date)" & git push; fi
-#         set -e
 #       env:
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 # notes:
 # "u 1:2" is shorthand for "using 1:2"
