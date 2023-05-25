@@ -28,10 +28,13 @@ https://gist.github.com/a-rodin/fef3f543412d6e1ec5b6cf55bf197d7b
 
 ## NVIDIA AVX vs GPU performancce
 
-<img src="https://github.com/leok7v/oblast/blob/main/profile/nvidia.svg">
+<p align="center">
+  <img src="https://github.com/leok7v/oblast/blob/main/profile/nvidia.svg" style="background-color:#C0C8B0">
+</p>
+
 
 ## Intel AVX vs GPU performancce
-
-<img src="https://github.com/leok7v/oblast/blob/main/profile/intel.svg">
-
+<p align="center">
+<img src="https://github.com/leok7v/oblast/blob/main/profile/intel.svg" style="background-color:#C0C8B0">
+</p>
 
