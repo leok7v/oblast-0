@@ -15,16 +15,14 @@ jobs:
       - name: Checkout.
         uses: actions/checkout@v3
         env:
-          GIT_TRACE: 1
-          GIT_CURL_VERBOSE: 1
-#       with:
-#           token: ${{ secrets.PAT }}
+          GIT_TRACE: 0
+          GIT_CURL_VERBOSE: 0
 
       - name: Update gnuplot prerequisites.
-        run: sudo apt-get update -y --quiet=1
+        run: sudo apt-get update -y --quiet=1 > /dev/null
 
       - name: Install gnuplot.
-        run: sudo apt-get install gnuplot -y --fix-missing --quiet=1
+        run: sudo apt-get install gnuplot -y --fix-missing --quiet=1 > /dev/null
 
       - name: Plot svg from csv for Intel GPU.
         run: |
@@ -72,11 +70,10 @@ jobs:
 
       - name: Update timestamp.
         run: |
-            echo $(date +"%Y-%m-%d-T%H.%M.%SZ") >> updated.txt
+            echo $(date +"%Y-%m-%d-T%H.%M.%SZ") >> profile/updated.txt
 
       - name: Update svg graphs inside repository.
         run: |
-          echo on
           git config --global user.name  "gnuplot"
           git config --global user.email "gnuplot@gnuplot.gnuplot"
           git add .
@@ -84,9 +81,6 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # notes:
 # "u 1:2" is shorthand for "using 1:2"
